@@ -47,15 +47,15 @@ class Article {
 */
 
 const articleData = [
-  (dogsArticle = {
+  {
     header: "Dogs",
     date: "Nov 7th, 2017",
     "paragraph-1":
       "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit in nostrum earum? Nihil harum, et quidem nobis blanditiis repellat cumque soluta hic nesciunt quam voluptatibus! Similique provident, repudiandae exercitationem aspernatur cupiditate excepturi dicta voluptatem fugiat eveniet nobis eius sed rem.",
     "paragraph-2":
       "2222Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit in nostrum earum? Nihil harum, et quidem nobis blanditiis repellat cumque soluta hic nesciunt quam voluptatibus! Similique provident, repudiandae exercitationem aspernatur cupiditate excepturi dicta voluptatem fugiat eveniet nobis eius sed rem."
-  }),
-  (catsArticle = {
+  },
+  {
     header: "Cats",
     date: "Nov 7th, 2017",
     "paragraph-1":
@@ -64,7 +64,7 @@ const articleData = [
       "4444Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit in nostrum earum? Nihil harum, et quidem nobis blanditiis repellat cumque soluta hic nesciunt quam voluptatibus! Similique provident, repudiandae exercitationem aspernatur cupiditate excepturi dicta voluptatem fugiat eveniet nobis eius sed rem.",
     "paragraph-3":
       "5555Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit in nostrum earum? Nihil harum, et quidem nobis blanditiis repellat cumque soluta hic nesciunt quam voluptatibus! Similique provident, repudiandae exercitationem aspernatur cupiditate excepturi dicta voluptatem fugiat eveniet nobis eius sed rem."
-  })
+  }
 ];
 
 function buildArticle(data) {
@@ -141,24 +141,22 @@ document.querySelector(".removeParagraphBtn").addEventListener("click", () => {
 
 document.querySelector(".addArticleBtn").addEventListener("click", () => {
   const header = document.querySelector(".headerForm").value;
-  document.querySelector(".headerForm").value = '';
+  document.querySelector(".headerForm").value = "";
 
   const date = document.querySelector(".dateForm").value;
-  document.querySelector(".dateForm").value = '';
+  document.querySelector(".dateForm").value = "";
 
   const paragraphs = [];
-  document
-    .querySelectorAll(".paragraphForm")
-    .forEach(form => {
-      paragraphs.push(form.value);
-      form.parentNode.removeChild(form);
-    });
+  document.querySelectorAll(".paragraphForm").forEach(form => {
+    paragraphs.push(form.value);
+    form.parentNode.removeChild(form);
+  });
 
   const data = { header, date };
   paragraphs.forEach((paragraph, idx) => {
     data[`paragraph-${idx + 1}`] = paragraph;
-  })
+  });
 
   const article = buildArticle(data);
-  new Article(article)
+  new Article(article);
 });
