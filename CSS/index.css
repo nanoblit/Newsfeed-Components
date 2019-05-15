@@ -118,6 +118,9 @@
 .article-open {
   height: 400px;
 }
+.paragraphForm {
+  display: block;
+}
 html,
 body {
   margin: 0;
