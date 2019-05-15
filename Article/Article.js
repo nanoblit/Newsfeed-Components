@@ -68,38 +68,54 @@ const articleData = [
 ];
 
 function buildArticle(data) {
+  function createDate(dateValue) {
+    const date = document.createElement("p");
+    date.classList.add("date");
+    date.textContent = dateValue;
+
+    return date;
+  }
+
+  function createParagraphs(data) {
+    let paragraphs = [];
+    for (let i = 1; ; i++) {
+      if (data[`paragraph-${i}`] === undefined) break;
+      paragraphs.push(data[`paragraph-${i}`]);
+    }
+    paragraphs = paragraphs.map(paragraphText => {
+      const element = document.createElement("p");
+      element.textContent = paragraphText;
+      return element;
+    });
+
+    return paragraphs;
+  }
+
+  function appendElements(article, header, date, paragraphs, span) {
+    article.append(header);
+    article.append(date);
+    for (let paragraph of paragraphs) {
+      article.append(paragraph);
+    }
+    article.append(span);
+  
+    document.querySelector(".articles").append(article);
+  }
+
   const article = document.createElement("div");
   article.classList.add("article");
 
   const header = document.createElement("h2");
   header.textContent = data.header;
 
-  const date = document.createElement("p");
-  date.classList.add("date");
-  date.textContent = data.date;
+  const date = createDate(data.date);
 
-  let paragraphs = [];
-  for (let i = 1; ; i++) {
-    if (data[`paragraph-${i}`] === undefined) break;
-    paragraphs.push(data[`paragraph-${i}`]);
-  }
-  paragraphs = paragraphs.map(paragraphText => {
-    const element = document.createElement("p");
-    element.textContent = paragraphText;
-    return element;
-  });
+  const paragraphs = createParagraphs(data);
 
   const span = document.createElement("span");
   span.classList.add("expandButton");
 
-  article.append(header);
-  article.append(date);
-  for (let paragraph of paragraphs) {
-    article.append(paragraph);
-  }
-  article.append(span);
-
-  document.querySelector(".articles").append(article);
+  appendElements(article, header, date, paragraphs, span);
 }
 
 for (let article of articleData) {
