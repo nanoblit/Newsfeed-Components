@@ -151,7 +151,7 @@ document.querySelector(".addArticleBtn").addEventListener("click", () => {
     .querySelectorAll(".paragraphForm")
     .forEach(form => {
       paragraphs.push(form.value);
-      form.value = "";
+      form.parentNode.removeChild(form);
     });
 
   const data = { header, date };
