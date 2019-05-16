@@ -11,6 +11,7 @@
   height: 50px;
   overflow: hidden;
   box-shadow: 2px 2px 2px lightgrey;
+  transition: height 0.2s;
 
   h2 {
     font-size: 28px;
@@ -39,12 +40,23 @@
     transform: translate(-50%);
     background-color: white;
   }
+
+  .closeButton {
+    position: absolute;
+    bottom: 0;
+    left: 58%;
+    font-size: 12px;
+    color: grey;
+    cursor: pointer;
+    transform: translate(-50%);
+    background-color: white;
+  }
 }
 
 .article-open {
   height: 400px;
 }
 
-
-
-
+.paragraphForm {
+  display: block;
+}
